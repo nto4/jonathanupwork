@@ -1,0 +1,13 @@
+import cv2
+import pytesseract
+
+pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+
+img = cv2.imread('template_text.jpg')
+gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+text = pytesseract.image_to_string(gray)
+
+text = text.split("\n")
+for i in text:
+    if "SCHOOL:" in i:
+        print(i)
